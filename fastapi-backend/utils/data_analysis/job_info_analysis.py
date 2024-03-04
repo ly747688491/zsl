@@ -1,11 +1,13 @@
-import os
+import pandas as pd
+from sqlalchemy import create_engine
+
+from config.database import SQLALCHEMY_DATABASE_URL
 
 
-def get_basic_info():
-    import pandas as pd
-
-    current_dir = os.path.dirname(os.path.realpath(__file__))
-    project_root = os.path.dirname(os.path.dirname(current_dir))
-    dataset_path = os.path.join(project_root, "static", "job_info_dataset.xlsx")
-    df = pd.read_excel(dataset_path)
-    print(df)
+def read_data():
+    engine = create_engine(SQLALCHEMY_DATABASE_URL)
+    sql = r'select * from job_info'  # 查询数据库中的表
+    # 读取SQL数据库
+    df = pd.read_sql_query(sql=sql, con=engine)  # 读取SQL数据库，并获得pandas数据帧。
+    df = df.set_index('id')
+    return df
