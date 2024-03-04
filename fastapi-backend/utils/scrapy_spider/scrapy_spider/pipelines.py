@@ -27,7 +27,6 @@ class ScrapySpiderPipeline:
             company_type=item['company_type'],
             company_size=item['company_size'],
             province=item['province'],
-            city=item['job_city']
         )
         session.add(job_info)
         session.commit()

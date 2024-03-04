@@ -17,4 +17,3 @@ class JobInfo(Base):
     company_type = Column(String(100), nullable=False)
     company_size = Column(String(100), nullable=False)
     province = Column(String(100), nullable=False)
-    city = Column(String(100), nullable=False)
