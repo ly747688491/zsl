@@ -7,7 +7,7 @@ from config.database import SQLALCHEMY_DATABASE_URL
 
 def read_data():
     engine = create_engine(SQLALCHEMY_DATABASE_URL)
-    sql = r'select * from job_info'  # 查询数据库中的表
+    sql = r'select * from sheet1'  # 查询数据库中的表
     # 读取SQL数据库
     df = pd.read_sql_query(sql=sql, con=engine)  # 读取SQL数据库，并获得pandas数据帧。
     df = df.set_index('id')
@@ -29,8 +29,11 @@ def clean_error_company(df: DataFrame):
 
 if __name__ == '__main__':
     df = read_data()
-    df['province'] = df.apply(replace_unknown_city, axis=1)
-    df = clean_error_company(df)
-    df.drop_duplicates(inplace=True)
+    df = df.drop('id')
+
+    # df['province'] = df.apply(replace_unknown_city, axis=1)
+    # df = clean_error_company(df)
+    # df.drop_duplicates(inplace=True)
+
     engine = create_engine(SQLALCHEMY_DATABASE_URL)
     df.to_sql(name='job_info', con=engine, if_exists='replace', index=True, index_label='id')

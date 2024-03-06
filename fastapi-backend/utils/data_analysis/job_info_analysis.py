@@ -15,13 +15,12 @@ def read_data():
 
 
 def get_type_and_num(df: DataFrame):
-    df_type_num = {
+    return {
         'total_records': df.shape[0],  # 获取记录总数
         'total_companies': df['company_name'].nunique(),  # 获取公司总数
         'total_provinces': df['province'].nunique(),  # 获取省份总数
-        'total_company_types': df['company_type'].nunique()  # 获取公司类型总数
+        'total_company_types': df['company_type'].nunique(),  # 获取公司类型总数
     }
-    return df_type_num
 
 
 if __name__ == '__main__':
