@@ -40,18 +40,13 @@ class ZhilainzhaopinSpider(scrapy.Spider):
     allowed_domains = ["sou.zhaopin.com"]
     start_urls = ["https://sou.zhaopin.com/"]
     city_list = {
-        "上海": 538,
-        "北京": 530,
-        "广州": 763,
-        "深圳": 765,
-        "天津": 531,
-        "武汉": 736,
-        "西安": 854,
-        "呼和浩特": 587,
-        "南京": 635,
-        "杭州": 653,
-        "沈阳": 599,
-        "大连": 600,
+        "上海": 538, '重庆': 551, '厦门': 682,
+        "北京": 530, '成都': 801, '长春': 613,
+        "广州": 763, '济南': 702, "深圳": 765,
+        "天津": 531, "武汉": 736, "西安": 854,
+        "呼和浩特": 587, "南京": 635, "杭州": 653,
+        "沈阳": 599, "大连": 600, '青岛': 703,
+        '苏州': 639, '哈尔滨': 622
     }
 
     def start_requests(self) -> Iterable[Request]:
@@ -106,11 +101,14 @@ class ZhilainzhaopinSpider(scrapy.Spider):
                 .extract_first()
                 .strip()
             )
-            item["job_salary"] = (
-                body.xpath(".//div[@class='jobinfo']/div/p/text()")
-                .extract_first()
-                .strip()
-            )
+            try:
+                item["job_salary"] = (
+                    body.xpath(".//div[@class='jobinfo']/div/p/text()")
+                    .extract_first()
+                    .strip()
+                )
+            except Exception:
+                item["job_salary"] = "N/A"
             item["job_tags"] = ";".join(
                 body.xpath(".//div[@class='jobinfo__tag']//div//text()").extract()
             )
@@ -121,11 +119,14 @@ class ZhilainzhaopinSpider(scrapy.Spider):
                 .extract_first()
                 .strip()
             )
-            item["company_type"] = (
-                body.xpath(".//div[@class='companyinfo__tag']/div[1]/text()")
-                .extract_first()
-                .strip()
-            )
+            try:
+                item["company_type"] = (
+                    body.xpath(".//div[@class='companyinfo__tag']/div[1]/text()")
+                    .extract_first()
+                    .strip()
+                )
+            except Exception:
+                item['company_type'] = "N/A"
             item["company_size"] = (
                 body.xpath("//div[@class='companyinfo__tag']/div[2]/text()")
                 .extract_first()

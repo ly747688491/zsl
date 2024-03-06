@@ -12,7 +12,7 @@ class ScrapySpiderPipeline:
         self.engine = engine
         Base.metadata.create_all(self.engine)
         print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())))
-        print('爬取结束')
+        print('爬取开始')
 
     def process_item(self, item, spider):
         session = Session(self.engine)

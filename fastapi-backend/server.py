@@ -7,6 +7,7 @@ from config.get_db import init_create_table
 from config.get_redis import RedisUtil
 from exceptions.handle import handle_exception
 from middlewares.handle import handle_middleware
+from module_data.controller.job_info_controller import jobInfoController
 from module_data.controller.test_controller import testController
 from utils.system_utils import logger
 
@@ -35,7 +36,10 @@ handle_middleware(app)
 # 加载全局异常处理方法
 handle_exception(app)
 
-controller_list = [{"router": testController, "tags": ["测试模块"]}, ]
+controller_list = [
+    {"router": testController, "tags": ["测试模块"]},
+    {"router": jobInfoController, "tags": ["岗位信息"]},
+]
 
 for controller in controller_list:
     app.include_router(router=controller.get("router"), tags=controller.get("tags"))

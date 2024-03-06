@@ -1,0 +1,12 @@
+enrollee_id,city,city_development_index,gender,relevent_experience,enrolled_university,education_level,major_discipline,experience,company_size,company_type,last_new_job,training_hours,target,age
+1001,city_102,0.85,Male,Has relevent experience,no_enrollment,本科,Engineering,8,10000+,Public Sector,2,40,0.0,30
+1002,city_38,0.73,Female,Has relevent experience,Part time course,硕士,Engineering,3,100-500,Private Sector,never,30,1.0,25
+1003,city_58,0.68,Male,No relevent experience,Full time course,本科,Computer Science,>20,50-99,Public Sector,4,45,0.0,35
+1004,city_88,0.82,Female,Has relevent experience,no_enrollment,本科,STEM,10,5000-9999,Private Sector,1,35,1.0,28
+1005,city_15,0.72,Male,No relevent experience,Full time course,大专,Engineering,5,100-500,Public Sector,never,50,0.0,32
+1006,city_20,0.78,Female,Has relevent experience,no_enrollment,本科,Information Technology,12,1000-4999,Private Sector,2,60,1.0,29
+1007,city_82,0.91,Male,Has relevent experience,no_enrollment,本科,STEM,>20,10000+,Public Sector,1,55,0.0,36
+1008,city_120,0.62,Female,No relevent experience,Full time course,本科,STEM,4,100-500,Private Sector,never,40,0.0,27
+1009,city_55,0.88,Male,Has relevent experience,no_enrollment,硕士,Engineering,6,500-999,Private Sector,3,48,1.0,31
+1010,city_78,0.77,Female,No relevent experience,Part time course,本科,STEM,1,1000-4999,Public Sector,never,25,0.0,24
+

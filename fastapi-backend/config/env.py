@@ -97,26 +97,27 @@ class GetConfig:
         """
         解析命令行参数
         """
-        if 'uvicorn' in sys.argv[0]:
-            # 使用uvicorn启动时，命令行参数需要按照uvicorn的文档进行配置，无法自定义参数
-            pass
-        else:
+        if 'uvicorn' not in sys.argv[0]:
             # 使用argparse定义命令行参数
             parser = argparse.ArgumentParser(description='命令行参数')
             parser.add_argument('--env', type=str, default='', help='运行环境')
             # 解析命令行参数
             args = parser.parse_args()
             # 设置环境变量，如果未设置命令行参数，默认APP_ENV为dev
-            os.environ['APP_ENV'] = args.env if args.env else 'dev'
+            os.environ['APP_ENV'] = args.env or 'dev'
         # 读取运行环境
         run_env = os.environ.get('APP_ENV', '')
-        # 运行环境未指定时默认加载.env.dev
-        env_file = '.env.dev.dev'
-        # 运行环境不为空时按命令行参数加载对应.env文件
-        if run_env != '':
-            env_file = f'.env.dev.{run_env}'
+        env_file = f'.env.dev.{run_env}' if run_env != '' else '.env.dev.dev'
         # 加载配置
         load_dotenv(env_file)
+
+
+class CachePathConfig:
+    """
+    缓存目录配置
+    """
+    PATH = os.path.join(os.path.abspath(os.getcwd()), 'caches')
+    PATHSTR = 'caches'
 
 
 # 实例化获取配置类

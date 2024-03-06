@@ -1,5 +1,7 @@
 from config.database import *
 from utils.system_utils import logger
+from module_data.entity.do.job_seeker_do import JobSeekerInfo
+from module_data.entity.do.job_info_do import JobInfo
 
 
 def get_db_pro():
