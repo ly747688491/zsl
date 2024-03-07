@@ -10,8 +10,7 @@ from pydantic import BaseModel
 SchemaType = TypeVar("SchemaType", bound=BaseModel)
 
 
-def get_form_dict(form: Optional[SchemaType] = None, start: Optional[datetime] = None, end: Optional[datetime] = None,
-                  time_range: Optional[str] = None, **kwargs) -> Dict:
+def get_form_dict(form: Optional[SchemaType] = None, start: Optional[datetime] = None, end: Optional[datetime] = None, time_range: Optional[str] = None, **kwargs) -> Dict:
     form_dict = form.dict(exclude_none=True) if form else {}
     if (start is not None) and (end is not None) and (time_range is not None):
         form_dict[time_range] = (start, end)
@@ -20,7 +19,7 @@ def get_form_dict(form: Optional[SchemaType] = None, start: Optional[datetime] =
 
 
 def create_dir(file_name: str) -> str:
-    """ 创建文件夹 """
+    """创建文件夹"""
 
     base_path = get_current_directory()
 
