@@ -34,18 +34,18 @@ class DataBaseSettings(BaseSettings):
     """
     数据库配置
     """
-    db_host: str = '127.0.0.1'
+    db_host: str = "101.126.69.153"
     db_port: int = 3306
-    db_username: str = 'caiqian'
-    db_password: str = 'Liy_0123'
-    db_database: str = 'test_temp'
+    db_username: str = "zsl_fastapi"
+    db_password: str = "tfJhF6RMYpB46TYF"
+    db_database: str = "zsl_fastapi"
 
 
 class RedisSettings(BaseSettings):
     """
     Redis配置
     """
-    redis_host: str = '127.0.0.1'
+    redis_host: str = "101.126.69.153"
     redis_port: int = 6379
     redis_username: str = ''
     redis_password: str = 'Liy_0123'
