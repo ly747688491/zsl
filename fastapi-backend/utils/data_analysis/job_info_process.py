@@ -63,6 +63,7 @@ def clean_error_company(df: DataFrame):
     清除掉company_type错误的数据
     """
     wrong_data = ["20-99人", "100-299人", "20人以下", "500-999人", "10000人以上"]
+    df["company_type"] = df["company_type"].str.strip()  # 去除左右两边的空格
     return df[~df["company_type"].isin(wrong_data)]
 
 def clean_error_size(company_size):
@@ -78,7 +79,7 @@ def clean_error_size(company_size):
 
 def to_sql(df: DataFrame):
     engine = create_engine(SQLALCHEMY_DATABASE_URL)
-    df.to_sql(name="job_info", con=engine, if_exists="replace", index=True, index_label="id")
+    df.to_sql(name="job_info", con=engine, if_exists="append", index=True, index_label="id")
 
 
 def mian(df: DataFrame):
@@ -93,6 +94,7 @@ def mian(df: DataFrame):
     df = df[df['company_size'].str.contains('人', na=False)]
     df["company_size"] = df["company_size"].apply(clean_error_size)
     df.drop_duplicates(inplace=True) # 删除重复数据
+    df.fillna(value=np.nan,inplace=True)
     return df
 
 
