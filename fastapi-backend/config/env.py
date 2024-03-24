@@ -37,7 +37,7 @@ class DataBaseSettings(BaseSettings):
     db_host: str = "101.126.69.153"
     db_port: int = 3306
     db_username: str = "zsl_fastapi"
-    db_password: str = "tfJhF6RMYpB46TYF"
+    db_password: str = "aMjXDEefaNGFWaam"
     db_database: str = "zsl_fastapi"
 
 
@@ -48,7 +48,7 @@ class RedisSettings(BaseSettings):
     redis_host: str = "101.126.69.153"
     redis_port: int = 6379
     redis_username: str = ''
-    redis_password: str = 'Liy_0123'
+    redis_password: str = 'jhkdjhkjdhsIUTYURTU_3Sjnb7'
     redis_database: int = 1
 
 
