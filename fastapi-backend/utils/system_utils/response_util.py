@@ -34,7 +34,7 @@ class ResponseUtil:
         if rows is not None:
             result['rows'] = rows
         if dict_content is not None:
-            result.update(dict_content)
+            result |= dict_content
         if model_content is not None:
             result.update(model_content.model_dump(by_alias=True))
 
@@ -67,7 +67,7 @@ class ResponseUtil:
         if rows is not None:
             result['rows'] = rows
         if dict_content is not None:
-            result.update(dict_content)
+            result |= dict_content
         if model_content is not None:
             result.update(model_content.model_dump(by_alias=True))
 
@@ -101,7 +101,7 @@ class ResponseUtil:
         if rows is not None:
             result['rows'] = rows
         if dict_content is not None:
-            result.update(dict_content)
+            result |= dict_content
         if model_content is not None:
             result.update(model_content.model_dump(by_alias=True))
 

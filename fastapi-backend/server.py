@@ -42,4 +42,4 @@ controller_list = [
 ]
 
 for controller in controller_list:
-    app.include_router(router=controller.get("router"), tags=controller.get("tags"))
+    app.include_router(router=controller["router"], tags=controller.get("tags"))
