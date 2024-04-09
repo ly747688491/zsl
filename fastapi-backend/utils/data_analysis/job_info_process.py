@@ -10,7 +10,7 @@ from config.database import SQLALCHEMY_DATABASE_URL
 
 def read_data():
     engine = create_engine(SQLALCHEMY_DATABASE_URL)
-    sql = r"select * from job_info原始数据"  # 查询数据库中的表
+    sql = r"select * from sheet1"  # 查询数据库中的表
     # 读取SQL数据库
     df = pd.read_sql_query(sql=sql, con=engine)  # 读取SQL数据库，并获得pandas数据帧。
     df = df.set_index("id")
@@ -64,6 +64,7 @@ def clean_error_company(df: DataFrame):
     """
     wrong_data = ["20-99人", "100-299人", "20人以下", "500-999人", "10000人以上"]
     df["company_type"] = df["company_type"].str.strip()  # 去除左右两边的空格
+    df["company_type"] = df["company_type"].replace("", "未知")
     return df[~df["company_type"].isin(wrong_data)]
 
 def clean_error_size(company_size):
@@ -79,13 +80,14 @@ def clean_error_size(company_size):
 
 def to_sql(df: DataFrame):
     engine = create_engine(SQLALCHEMY_DATABASE_URL)
-    df.to_sql(name="job_info", con=engine, if_exists="append", index=True, index_label="id")
+    df.to_sql(name="job_info", con=engine, if_exists="replace", index=True, index_label="id")
 
 
 def mian(df: DataFrame):
     df = df.reset_index(drop=True)
     df.index = df.index + 1  # 将索引从1开始
     df.index.name = "id"  # 将索引名称设置为'id'
+    df.drop('省份', axis=1, inplace=True)  # 删除city列
     df["province"] = df.apply(replace_unknown_city, axis=1)
     df["position_tag"] = df["position_tag"].apply(process_position_tag)
     df["work_experience"] = df["work_experience"].apply(replace_error_expercience)
@@ -101,4 +103,5 @@ def mian(df: DataFrame):
 if __name__ == "__main__":
     dataFrame = read_data()
     dataFrame = mian(dataFrame)
+    print(dataFrame)
     to_sql(dataFrame)

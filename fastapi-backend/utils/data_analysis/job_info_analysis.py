@@ -39,7 +39,6 @@ def get_tag_num(df: DataFrame):
 def get_city_job_num(df: DataFrame):
     job_counts = df.groupby("province").size()
     sorted_job_counts = job_counts.sort_values()
-
     return sorted_job_counts.to_dict()
 
 
@@ -65,6 +64,4 @@ if __name__ == "__main__":
     education_requirement_values = analyze_field_values(data, "education_requirement")
     company_type_values = analyze_field_values(data, "company_type")
     print(province_values)
-    print(work_experience_values)
-    print(education_requirement_values)
-    print(company_type_values)
+    print(type(province_values))
