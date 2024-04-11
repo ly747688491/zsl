@@ -18,3 +18,10 @@ pydantic~=2.6.3
 uvicorn~=0.27.1
 python-dotenv~=1.0.1
 scrapy==2.11.1
+
+pyecharts~=2.0.5
+numpy~=1.26.4
+faker~=24.7.1
+itemadapter~=0.8.0
+matplotlib~=3.8.4
+scikit-learn~=1.4.2
